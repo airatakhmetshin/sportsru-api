@@ -2,16 +2,25 @@
 
 namespace SportsruApi\Entity;
 
-class Article
+class Post
 {
     /** @var bool */
     private $advertMaterial;
 
-    /** @var bool */
-    private $bodyIsEmpty;
+    /** @var array */
+    private $authors;
+
+    /** @var string */
+    private $avatar;
+
+    /** @var array */
+    private $blog;
 
     /** @var bool */
-    private $calcStat;
+    private $branded;
+
+    /** @var string */
+    private $brief;
 
     /** @var int */
     private $commentsCount;
@@ -20,25 +29,25 @@ class Article
     private $commentsDisabled;
 
     /** @var string */
-    private $contentOrigin;
-
-    /** @var string */
     private $desktopUrl;
+
+    /** @var array */
+    private $feedImage;
 
     /** @var int */
     private $id;
 
-    /** @var string */
-    private $image;
+    /** @var bool */
+    private $isDraft;
 
     /** @var bool */
-    private $main;
-
-    /** @var bool */
-    private $mainInSection;
+    private $isHidden;
 
     /** @var string */
-    private $mediaType;
+    private $media;
+
+    /** @var string */
+    private $mediaSrc;
 
     /** @var string */
     private $mobileUrl;
@@ -50,13 +59,10 @@ class Article
     private $published;
 
     /** @var array */
-    private $section;
+    private $rating;
 
-    /** @var array */
-    private $socialImage;
-
-    /** @var array */
-    private $source;
+    /** @var string */
+    private $smartBrief;
 
     /** @var bool */
     private $special;
@@ -66,4 +72,7 @@ class Article
 
     /** @var string */
     private $title;
+
+    /** @var bool */
+    private $ugcMaterial;
 }
