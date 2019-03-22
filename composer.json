@@ -1,0 +1,11 @@
+{
+    "name": "akhmetshin/sportsru-api",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Airat Akhmetshin",
+            "email": "st1ncnpk@gmail.com"
+        }
+    ],
+    "require": {}
+}
