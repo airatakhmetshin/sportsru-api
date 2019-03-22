@@ -2,7 +2,7 @@
 
 namespace SportsruApi\Entity;
 
-class Article
+class News
 {
     /** @var bool */
     private $advertMaterial;
