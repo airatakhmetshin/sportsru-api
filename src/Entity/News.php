@@ -4,20 +4,8 @@ namespace SportsruApi\Entity;
 
 class News
 {
-    /** @var bool */
-    private $advertMaterial;
-
-    /** @var bool */
-    private $bodyIsEmpty;
-
-    /** @var bool */
-    private $calcStat;
-
     /** @var int */
     private $commentsCount;
-
-    /** @var bool */
-    private $commentsDisabled;
 
     /** @var string */
     private $contentOrigin;
@@ -43,9 +31,6 @@ class News
     /** @var string */
     private $mobileUrl;
 
-    /** @var bool */
-    private $partnerMaterial;
-
     /** @var array */
     private $published;
 
@@ -57,12 +42,6 @@ class News
 
     /** @var array */
     private $source;
-
-    /** @var bool */
-    private $special;
-
-    /** @var bool */
-    private $specialWithoutFeed;
 
     /** @var string */
     private $title;
