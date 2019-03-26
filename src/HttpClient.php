@@ -4,11 +4,14 @@ namespace SportsruApi;
 
 class HttpClient
 {
+    /** @var string|null */
+    private $response = null;
+
     /**
      * @param string $url
-     * @return null|string
+     * @return HttpClient
      */
-    public function request(string $url): ?string
+    public function request(string $url): self
     {
         $ch = curl_init();
 
@@ -16,10 +19,26 @@ class HttpClient
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
+        $this->response = curl_exec($ch);
 
         curl_close($ch);
 
-        return $response ? $response : null;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function body(): string
+    {
+        return $this->response ? $this->response : '';
+    }
+
+    /**
+     * @return array
+     */
+    public function json(): array
+    {
+        return $this->response ? json_decode($this->response, true) : [];
     }
 }
