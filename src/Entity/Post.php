@@ -10,8 +10,8 @@ class Post
     /** @var string */
     private $avatar;
 
-    /** @var array */
-    private $blog;
+    /** @var int */
+    private $blogId;
 
     /** @var string */
     private $brief;
@@ -37,14 +37,49 @@ class Post
     /** @var \DateTimeInterface */
     private $publishedAt;
 
-    /** @var array */
-    private $rating;
+    /** @var int */
+    private $ratingMinus;
+
+    /** @var int */
+    private $ratingPlus;
 
     /** @var string */
     private $title;
 
     /** @var bool */
     private $ugcMaterial;
+
+    /**
+     * @return string
+     */
+    public function getAvatar(): string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar(string $avatar): void
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBlogId(): int
+    {
+        return $this->blogId;
+    }
+
+    /**
+     * @param int $blogId
+     */
+    public function setBlogId(int $blogId): void
+    {
+        $this->blogId = $blogId;
+    }
 
     /**
      * @return string
@@ -159,6 +194,43 @@ class Post
     }
 
     /**
+     * @return int
+     */
+    public function getRatingMinus(): int
+    {
+        return $this->ratingMinus;
+    }
+
+    /**
+     * @param int $ratingMinus
+     */
+    public function setRatingMinus(int $ratingMinus): void
+    {
+        $this->ratingMinus = $ratingMinus;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRatingPlus(): int
+    {
+        return $this->ratingPlus;
+    }
+
+    /**
+     * @param int $ratingPlus
+     */
+    public function setRatingPlus(int $ratingPlus): void
+    {
+        $this->ratingPlus = $ratingPlus;
+    }
+
+    public function getRatingTotal(): int
+    {
+        return $this->ratingPlus - $this->ratingMinus;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
@@ -172,5 +244,21 @@ class Post
     public function setTitle(string $title): void
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUgcMaterial(): bool
+    {
+        return $this->ugcMaterial;
+    }
+
+    /**
+     * @param bool $ugcMaterial
+     */
+    public function setUgcMaterial(bool $ugcMaterial): void
+    {
+        $this->ugcMaterial = $ugcMaterial;
     }
 }
