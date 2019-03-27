@@ -2,6 +2,7 @@
 
 namespace SportsruApi\Factory;
 
+use SportsruApi\Entity\BlogType;
 use SportsruApi\Entity\Post;
 
 class PostFactory
@@ -10,7 +11,7 @@ class PostFactory
     {
         $postEntity = new Post();
         if (isset($post['avatar'])) $postEntity->setAvatar($post['avatar']);
-        $postEntity->setBlogId($post['blog']['id']);
+        $postEntity->setBlog(new BlogType($post['blog']));
         $postEntity->setBrief($post['brief']);
         $postEntity->setCommentsCount($post['comments_count']);
         $postEntity->setDesktopUrl($post['desktop_url']);

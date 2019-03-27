@@ -10,8 +10,8 @@ class Post
     /** @var null|string */
     private $avatar;
 
-    /** @var int */
-    private $blogId;
+    /** @var BlogType */
+    private $blog;
 
     /** @var string */
     private $brief;
@@ -66,19 +66,19 @@ class Post
     }
 
     /**
-     * @return int
+     * @return BlogType
      */
-    public function getBlogId(): int
+    public function getBlog(): BlogType
     {
-        return $this->blogId;
+        return $this->blog;
     }
 
     /**
-     * @param int $blogId
+     * @param BlogType $blog
      */
-    public function setBlogId(int $blogId): void
+    public function setBlog(BlogType $blog): void
     {
-        $this->blogId = $blogId;
+        $this->blog = $blog;
     }
 
     /**
