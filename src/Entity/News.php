@@ -40,8 +40,8 @@ class News
     /** @var array */
     private $socialImage;
 
-    /** @var array */
-    private $source;
+    /** @var null|string */
+    private $sourceUrl;
 
     /** @var string */
     private $title;
@@ -188,5 +188,37 @@ class News
     public function setSection(SectionType $section): void
     {
         $this->section = $section;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSourceUrl(): ?string
+    {
+        return $this->sourceUrl;
+    }
+
+    /**
+     * @param string $sourceUrl
+     */
+    public function setSourceUrl(string $sourceUrl): void
+    {
+        $this->sourceUrl = $sourceUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 }

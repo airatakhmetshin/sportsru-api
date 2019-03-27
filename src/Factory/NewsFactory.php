@@ -19,6 +19,8 @@ class NewsFactory
         $newsEntity->setMobileUrl($news['mobile_url']);
         $newsEntity->setPublishedAt((new \DateTime())->setTimestamp($news['published']['timestamp']));
         $newsEntity->setSection(new SectionType($news['section']));
+        if (isset($news['source']['url'])) $newsEntity->setSourceUrl($news['source']['url']);
+        $newsEntity->setTitle($news['title']);
 
         return $newsEntity;
     }
