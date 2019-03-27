@@ -2,6 +2,8 @@
 
 namespace SportsruApi;
 
+use SportsruApi\Factory\NewsFactory;
+
 class NewsController extends BaseController
 {
     /** @var string */
@@ -19,6 +21,9 @@ class NewsController extends BaseController
     /** @var string */
     public const CONTENT_ORIGIN_USER = 'user';
 
+    /** @var NewsFactory */
+    private $factory;
+
     /**
      * NewsController constructor.
      * @param HttpClient $httpClient
@@ -26,6 +31,8 @@ class NewsController extends BaseController
     public function __construct(HttpClient $httpClient)
     {
         parent::__construct($httpClient);
+
+        $this->factory = new NewsFactory();
     }
 
     public function getAll(
@@ -46,8 +53,10 @@ class NewsController extends BaseController
 
         $url = $this->makeUrl(self::PATH, $args);
 
-        $news = json_decode($this->httpClient->request($url), true);
+        $response = $this->httpClient->request($url)->json();
 
-        return $news;
+        return array_map(function ($news) {
+            return $this->factory->create($news);
+        }, $response);
     }
 }
