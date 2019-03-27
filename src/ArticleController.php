@@ -2,10 +2,15 @@
 
 namespace SportsruApi;
 
+use SportsruApi\Factory\ArticleFactory;
+
 class ArticleController extends BaseController
 {
     /** @var string */
     private const PATH = '/core/article/list/?args=';
+
+    /** @var ArticleFactory */
+    private $factory;
 
     /**
      * ArticleController constructor.
@@ -14,6 +19,8 @@ class ArticleController extends BaseController
     public function __construct(HttpClient $httpClient)
     {
         parent::__construct($httpClient);
+
+        $this->factory = new ArticleFactory();
     }
 
     public function getAll(string $category, int $count = parent::DEFAULT_COUNT)
@@ -30,8 +37,10 @@ class ArticleController extends BaseController
 
         $url = $this->makeUrl(self::PATH, $args);
 
-        $articles = $this->httpClient->request($url)->json();
+        $response = $this->httpClient->request($url)->json();
 
-        return $articles['documents'];
+        return array_map(function ($article) {
+            return $this->factory->create($article);
+        }, $response['documents']);
     }
 }
