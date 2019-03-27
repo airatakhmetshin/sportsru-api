@@ -30,7 +30,7 @@ class ArticleController extends BaseController
 
         $url = $this->makeUrl(self::PATH, $args);
 
-        $articles = json_decode($this->httpClient->request($url), true);
+        $articles = $this->httpClient->request($url)->json();
 
         return $articles['documents'];
     }
