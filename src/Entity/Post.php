@@ -7,7 +7,7 @@ class Post
     /** @var array */
     private $authors;
 
-    /** @var string */
+    /** @var null|string */
     private $avatar;
 
     /** @var int */
@@ -50,9 +50,9 @@ class Post
     private $ugcMaterial;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
