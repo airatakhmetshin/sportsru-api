@@ -3,6 +3,7 @@
 namespace SportsruApi\Factory;
 
 use SportsruApi\Entity\News;
+use SportsruApi\Entity\SectionType;
 
 class NewsFactory
 {
@@ -17,6 +18,7 @@ class NewsFactory
         $newsEntity->setMediaType($news['media_type']);
         $newsEntity->setMobileUrl($news['mobile_url']);
         $newsEntity->setPublishedAt((new \DateTime())->setTimestamp($news['published']['timestamp']));
+        $newsEntity->setSection(new SectionType($news['section']));
 
         return $newsEntity;
     }

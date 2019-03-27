@@ -3,6 +3,7 @@
 namespace SportsruApi\Factory;
 
 use SportsruApi\Entity\Article;
+use SportsruApi\Entity\SectionType;
 
 class ArticleFactory
 {
@@ -15,6 +16,7 @@ class ArticleFactory
         $articleEntity->setId($article['id']);
         $articleEntity->setMobileUrl($article['mobile_url']);
         $articleEntity->setPublishedAt((new \DateTime())->setTimestamp($article['published']['timestamp']));
+        $articleEntity->setSection(new SectionType($article['section']));
         $articleEntity->setTitle($article['title']);
         $articleEntity->setUgcMaterial($article['ugc_material']);
 

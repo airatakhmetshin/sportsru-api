@@ -28,7 +28,7 @@ class Article
     /** @var \DateTimeInterface */
     private $publishedAt;
 
-    /** @var array */
+    /** @var SectionType */
     private $section;
 
     /** @var string */
@@ -131,6 +131,22 @@ class Article
     public function setPublishedAt(\DateTimeInterface $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return SectionType
+     */
+    public function getSection(): SectionType
+    {
+        return $this->section;
+    }
+
+    /**
+     * @param SectionType $section
+     */
+    public function setSection(SectionType $section): void
+    {
+        $this->section = $section;
     }
 
     /**
