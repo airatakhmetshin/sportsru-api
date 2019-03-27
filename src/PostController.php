@@ -2,9 +2,14 @@
 
 namespace SportsruApi;
 
+use SportsruApi\Factory\PostFactory;
+
 class PostController extends BaseController
 {
     const PATH = '/core/post/list/?args=';
+
+    /** @var PostFactory */
+    private $factory;
 
     /**
      * PostController constructor.
@@ -13,6 +18,8 @@ class PostController extends BaseController
     public function __construct(HttpClient $httpClient)
     {
         parent::__construct($httpClient);
+
+        $this->factory = new PostFactory();
     }
 
     public function getAll(
@@ -35,8 +42,10 @@ class PostController extends BaseController
 
         $url = $this->makeUrl(self::PATH, $args);
 
-        $posts = json_decode($this->httpClient->request($url), true);
+        $response = $this->httpClient->request($url)->json();
 
-        return $posts['documents'];
+        return array_map(function ($post) {
+            return $this->factory->create($post);
+        }, $response['documents']);
     }
 }
