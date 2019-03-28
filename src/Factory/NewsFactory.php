@@ -11,6 +11,7 @@ class NewsFactory
     {
         $newsEntity = new News();
         $newsEntity->setCommentsCount($news['comments_count']);
+        $newsEntity->setContentOrigin($news['content_origin']);
         $newsEntity->setDesktopUrl($news['desktop_url']);
         $newsEntity->setId($news['id']);
         $newsEntity->setMain($news['main']);

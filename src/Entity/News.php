@@ -4,10 +4,18 @@ namespace SportsruApi\Entity;
 
 class News
 {
+    /** @var array */
+    private const CONTENT_ORIGIN_VALUES = [
+        'all',
+        'mixed',
+        'editorial',
+        'user'
+    ];
+
     /** @var int */
     private $commentsCount;
 
-    /** @var string */
+    /** @var int */
     private $contentOrigin;
 
     /** @var string */
@@ -60,6 +68,26 @@ class News
     public function setCommentsCount(int $commentsCount): void
     {
         $this->commentsCount = $commentsCount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContentOrigin(): string
+    {
+        return self::CONTENT_ORIGIN_VALUES[$this->contentOrigin];
+    }
+
+    /**
+     * @param string $contentOrigin
+     */
+    public function setContentOrigin(string $contentOrigin): void
+    {
+        foreach (self::CONTENT_ORIGIN_VALUES as $key => $value) {
+            if ($contentOrigin === $value) {
+                $this->contentOrigin = $key;
+            }
+        }
     }
 
     /**
