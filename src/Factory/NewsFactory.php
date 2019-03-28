@@ -14,6 +14,7 @@ class NewsFactory
         $newsEntity->setContentOrigin($news['content_origin']);
         $newsEntity->setDesktopUrl($news['desktop_url']);
         $newsEntity->setId($news['id']);
+        $newsEntity->setImage($news['image']);
         $newsEntity->setMain($news['main']);
         $newsEntity->setMainInSection($news['main_in_section']);
         $newsEntity->setMediaType($news['media_type']);

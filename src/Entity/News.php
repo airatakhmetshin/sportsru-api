@@ -24,7 +24,7 @@ class News
     /** @var int */
     private $id;
 
-    /** @var string */
+    /** @var null|string */
     private $image;
 
     /** @var bool */
@@ -44,9 +44,6 @@ class News
 
     /** @var SectionType */
     private $section;
-
-    /** @var array */
-    private $socialImage;
 
     /** @var null|string */
     private $sourceUrl;
@@ -120,6 +117,29 @@ class News
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $http  = 'http';
+        $https = 'https';
+
+        if (substr($image, 0, strlen($http)) === $http ||
+            substr($image, 0, strlen($https)) === $https
+        ) {
+            $this->image = $image;
+        }
     }
 
     /**
@@ -247,6 +267,6 @@ class News
      */
     public function setTitle(string $title): void
     {
-        $this->title = $title;
+        $this->title = html_entity_decode($title);
     }
 }
