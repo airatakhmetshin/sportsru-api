@@ -2,6 +2,7 @@
 
 namespace SportsruApi\Factory;
 
+use SportsruApi\Entity\AuthorType;
 use SportsruApi\Entity\BlogType;
 use SportsruApi\Entity\Post;
 
@@ -10,6 +11,7 @@ class PostFactory
     public function create(array $post): Post
     {
         $postEntity = new Post();
+        foreach ($post['authors'] as $author) $postEntity->addAuthor(new AuthorType($author));
         if (isset($post['avatar'])) $postEntity->setAvatar($post['avatar']);
         $postEntity->setBlog(new BlogType($post['blog']));
         $postEntity->setBrief($post['brief']);

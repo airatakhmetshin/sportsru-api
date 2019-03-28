@@ -50,6 +50,22 @@ class Post
     private $ugcMaterial;
 
     /**
+     * @return array
+     */
+    public function getAuthors(): array
+    {
+        return $this->authors;
+    }
+
+    /**
+     * @param AuthorType $author
+     */
+    public function addAuthor(AuthorType $author): void
+    {
+        $this->authors[] = $author;
+    }
+
+    /**
      * @return null|string
      */
     public function getAvatar(): ?string
