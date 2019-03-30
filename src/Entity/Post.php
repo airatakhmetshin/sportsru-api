@@ -22,13 +22,13 @@ class Post
     /** @var string */
     private $desktopUrl;
 
-    /** @var array */
-    private $feedImage;
+    /** @var null|string */
+    private $imageUrl;
 
     /** @var int */
     private $id;
 
-    /** @var string */
+    /** @var null|string */
     private $mediaSrc;
 
     /** @var string */
@@ -146,6 +146,22 @@ class Post
     }
 
     /**
+     * @return null|string
+     */
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param string $imageUrl
+     */
+    public function setImageUrl(string $imageUrl): void
+    {
+        $this->imageUrl = $imageUrl;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -162,9 +178,9 @@ class Post
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getMediaSrc(): string
+    public function getMediaSrc(): ?string
     {
         return $this->mediaSrc;
     }
@@ -174,7 +190,7 @@ class Post
      */
     public function setMediaSrc(string $mediaSrc): void
     {
-        $this->mediaSrc = $mediaSrc;
+        $this->mediaSrc = str_replace('https://cdn.tribuna.com/fetch/?url=', '', urldecode($mediaSrc));
     }
 
     /**
