@@ -84,7 +84,9 @@ class Article
      */
     public function setFeature(string $feature): void
     {
-        $this->feature = $feature;
+        $feature = str_replace(["&nbsp;", "\xc2\xa0"], ' ', $feature);
+
+        $this->feature = trim(html_entity_decode($feature));
     }
 
     /**
@@ -196,7 +198,7 @@ class Article
      */
     public function setTitle(string $title): void
     {
-        $this->title = html_entity_decode($title);
+        $this->title = trim(html_entity_decode($title));
     }
 
     /**
