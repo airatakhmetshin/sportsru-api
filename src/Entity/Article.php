@@ -16,11 +16,11 @@ class Article
     /** @var int */
     private $id;
 
-    /** @var array */
-    private $image;
+    /** @var string */
+    private $imageUrl;
 
-    /** @var array */
-    private $images;
+    /** @var string */
+    private $bigImageUrl;
 
     /** @var string */
     private $mobileUrl;
@@ -104,6 +104,38 @@ class Article
     /**
      * @return string
      */
+    public function getImageUrl(): string
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param string $imageUrl
+     */
+    public function setImageUrl(string $imageUrl): void
+    {
+        $this->imageUrl = $imageUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBigImageUrl(): string
+    {
+        return $this->bigImageUrl;
+    }
+
+    /**
+     * @param string $bigImageUrl
+     */
+    public function setBigImageUrl(string $bigImageUrl): void
+    {
+        $this->bigImageUrl = $bigImageUrl;
+    }
+
+    /**
+     * @return string
+     */
     public function getMobileUrl(): string
     {
         return $this->mobileUrl;
@@ -162,7 +194,7 @@ class Article
      */
     public function setTitle(string $title): void
     {
-        $this->title = $title;
+        $this->title = html_entity_decode($title);
     }
 
     /**

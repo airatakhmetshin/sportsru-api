@@ -14,6 +14,8 @@ class ArticleFactory
         $articleEntity->setDesktopUrl($article['desktop_url']);
         $articleEntity->setFeature($article['feature']);
         $articleEntity->setId($article['id']);
+        $articleEntity->setImageUrl($article['image']['link']);
+        if (isset($article['images']['mainbig']['link'])) $articleEntity->setBigImageUrl($article['images']['mainbig']['link']);
         $articleEntity->setMobileUrl($article['mobile_url']);
         $articleEntity->setPublishedAt((new \DateTime())->setTimestamp($article['published']['timestamp']));
         $articleEntity->setSection(new SectionType($article['section']));
