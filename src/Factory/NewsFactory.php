@@ -3,7 +3,7 @@
 namespace SportsruApi\Factory;
 
 use SportsruApi\Entity\News;
-use SportsruApi\Entity\SectionType;
+use SportsruApi\Entity\Type\SectionType;
 
 class NewsFactory
 {

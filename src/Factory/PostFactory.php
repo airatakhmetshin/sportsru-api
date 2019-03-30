@@ -2,9 +2,9 @@
 
 namespace SportsruApi\Factory;
 
-use SportsruApi\Entity\AuthorType;
-use SportsruApi\Entity\BlogType;
 use SportsruApi\Entity\Post;
+use SportsruApi\Entity\Type\AuthorType;
+use SportsruApi\Entity\Type\BlogType;
 
 class PostFactory
 {

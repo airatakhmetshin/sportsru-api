@@ -2,6 +2,8 @@
 
 namespace SportsruApi\Entity;
 
+use SportsruApi\Entity\Type\SectionType;
+
 class Article
 {
     /** @var int */

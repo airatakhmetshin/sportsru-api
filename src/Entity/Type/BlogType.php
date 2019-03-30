@@ -1,6 +1,6 @@
 <?php
 
-namespace SportsruApi\Entity;
+namespace SportsruApi\Entity\Type;
 
 class BlogType
 {

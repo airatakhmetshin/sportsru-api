@@ -2,6 +2,9 @@
 
 namespace SportsruApi\Entity;
 
+use SportsruApi\Entity\Type\AuthorType;
+use SportsruApi\Entity\Type\BlogType;
+
 class Post
 {
     /** @var array */
