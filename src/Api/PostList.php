@@ -5,22 +5,24 @@ namespace SportsruApi\Api;
 use SportsruApi\Factory\PostFactory;
 use SportsruApi\HttpClient;
 
-class PostList extends BaseList
+class PostList extends BaseList implements ApiInterface
 {
-    const PATH = '/core/post/list/?args=';
+    const PATH = '/core/post/list/';
+
+    /** @var HttpClient */
+    private $httpClient;
 
     /** @var PostFactory */
     private $factory;
 
     /**
-     * PostController constructor.
+     * PostList constructor.
      * @param HttpClient $httpClient
      */
     public function __construct(HttpClient $httpClient)
     {
-        parent::__construct($httpClient);
-
-        $this->factory = new PostFactory();
+        $this->httpClient = $httpClient;
+        $this->factory    = new PostFactory();
     }
 
     public function getAll(

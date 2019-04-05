@@ -8,6 +8,8 @@ use SportsruApi\Api\PostList;
 
 class Client
 {
+    public const BASE_HOST = 'https://www.sports.ru';
+
     /** @var HttpClient */
     private $httpClient;
 

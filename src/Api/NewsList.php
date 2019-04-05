@@ -5,10 +5,10 @@ namespace SportsruApi\Api;
 use SportsruApi\Factory\NewsFactory;
 use SportsruApi\HttpClient;
 
-class NewsList extends BaseList
+class NewsList extends BaseList implements ApiInterface
 {
     /** @var string */
-    private const PATH = '/core/news/list/?args=';
+    private const PATH = '/core/news/list/';
 
     /** @var string */
     public const CONTENT_ORIGIN_ALL = 'all';
@@ -22,18 +22,20 @@ class NewsList extends BaseList
     /** @var string */
     public const CONTENT_ORIGIN_USER = 'user';
 
+    /** @var HttpClient */
+    private $httpClient;
+
     /** @var NewsFactory */
     private $factory;
 
     /**
-     * NewsController constructor.
+     * NewsList constructor.
      * @param HttpClient $httpClient
      */
     public function __construct(HttpClient $httpClient)
     {
-        parent::__construct($httpClient);
-
-        $this->factory = new NewsFactory();
+        $this->httpClient = $httpClient;
+        $this->factory    = new NewsFactory();
     }
 
     public function getAll(

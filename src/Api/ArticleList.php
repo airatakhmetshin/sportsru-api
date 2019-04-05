@@ -5,23 +5,25 @@ namespace SportsruApi\Api;
 use SportsruApi\Factory\ArticleFactory;
 use SportsruApi\HttpClient;
 
-class ArticleList extends BaseList
+class ArticleList extends BaseList implements ApiInterface
 {
     /** @var string */
-    private const PATH = '/core/article/list/?args=';
+    private const PATH = '/core/article/list/';
+
+    /** @var HttpClient */
+    private $httpClient;
 
     /** @var ArticleFactory */
     private $factory;
 
     /**
-     * ArticleController constructor.
+     * ArticleList constructor.
      * @param HttpClient $httpClient
      */
     public function __construct(HttpClient $httpClient)
     {
-        parent::__construct($httpClient);
-
-        $this->factory = new ArticleFactory();
+        $this->httpClient = $httpClient;
+        $this->factory    = new ArticleFactory();
     }
 
     public function getAll(string $category, int $count = parent::DEFAULT_COUNT)
