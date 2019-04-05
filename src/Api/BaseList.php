@@ -1,8 +1,10 @@
 <?php
 
-namespace SportsruApi;
+namespace SportsruApi\Api;
 
-class BaseController
+use SportsruApi\HttpClient;
+
+class BaseList
 {
     private const HOST = 'https://www.sports.ru';
 

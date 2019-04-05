@@ -1,10 +1,11 @@
 <?php
 
-namespace SportsruApi;
+namespace SportsruApi\Api;
 
 use SportsruApi\Factory\NewsFactory;
+use SportsruApi\HttpClient;
 
-class NewsController extends BaseController
+class NewsList extends BaseList
 {
     /** @var string */
     private const PATH = '/core/news/list/?args=';

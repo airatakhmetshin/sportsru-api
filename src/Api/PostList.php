@@ -1,10 +1,11 @@
 <?php
 
-namespace SportsruApi;
+namespace SportsruApi\Api;
 
 use SportsruApi\Factory\PostFactory;
+use SportsruApi\HttpClient;
 
-class PostController extends BaseController
+class PostList extends BaseList
 {
     const PATH = '/core/post/list/?args=';
 
