@@ -33,7 +33,7 @@ class ArticleList extends BaseList
                 'sub-name' => ''
             ],
             'count'          => $count,
-            'last_published' => time()
+            'last_published' => $this->lastPublished ?? time()
         ];
 
         $url = $this->makeUrl(self::PATH, $args);

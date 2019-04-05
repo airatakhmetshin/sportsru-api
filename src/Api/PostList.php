@@ -37,7 +37,7 @@ class PostList extends BaseList
                 'article_type' => $best ? 'best' : 'all'
             ],
             'count'          => $count,
-            'last_published' => time(),
+            'last_published' => $this->lastPublished ?? time(),
             'show_avatar'    => $showAvatar ? 1 : 0
         ];
 

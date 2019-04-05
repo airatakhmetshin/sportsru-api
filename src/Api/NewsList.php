@@ -49,7 +49,7 @@ class NewsList extends BaseList
                 'content_origin' => $contentOrigin
             ],
             'count'          => $count,
-            'last_published' => time()
+            'last_published' => $this->lastPublished ?? time()
         ];
 
         $url = $this->makeUrl(self::PATH, $args);
