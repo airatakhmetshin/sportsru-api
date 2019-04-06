@@ -8,9 +8,15 @@
         }
     ],
     "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    },
     "autoload": {
         "psr-4": {
             "SportsruApi\\": "src/"
         }
+    },
+    "scripts": {
+        "test": "phpunit --colors --bootstrap vendor/autoload.php tests/"
     }
 }
