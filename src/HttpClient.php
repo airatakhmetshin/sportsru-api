@@ -5,7 +5,7 @@ namespace SportsruApi;
 class HttpClient
 {
     /** @var string|null */
-    private $response = null;
+    protected $response = null;
 
     /**
      * @param string $url
