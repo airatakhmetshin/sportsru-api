@@ -19,7 +19,7 @@ class BaseList
         $this->lastPublished = $time->getTimestamp();
     }
 
-    protected function makeUrl(string $path, array $args): string
+    protected static function makeUrl(string $path, array $args): string
     {
         return Client::BASE_HOST . $path . '?args=' . json_encode($args);
     }

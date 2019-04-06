@@ -38,9 +38,7 @@ class ArticleList extends BaseList implements ApiInterface
             'last_published' => $this->lastPublished ?? time()
         ];
 
-        $url = $this->makeUrl(self::PATH, $args);
-
-        $response = $this->httpClient->request($url)->json();
+        $response = $this->httpClient->request(BaseList::makeUrl(self::PATH, $args))->json();
 
         return array_map(function ($article) {
             return $this->factory->create($article);

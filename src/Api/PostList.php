@@ -43,9 +43,7 @@ class PostList extends BaseList implements ApiInterface
             'show_avatar'    => $showAvatar ? 1 : 0
         ];
 
-        $url = $this->makeUrl(self::PATH, $args);
-
-        $response = $this->httpClient->request($url)->json();
+        $response = $this->httpClient->request(BaseList::makeUrl(self::PATH, $args))->json();
 
         return array_map(function ($post) {
             return $this->factory->create($post);
