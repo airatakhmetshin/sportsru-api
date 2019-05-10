@@ -7,7 +7,8 @@ use SportsruApi\HttpClient;
 
 class PostList extends BaseList implements ApiInterface
 {
-    const PATH = '/core/post/list/';
+    /** @var string */
+    private const PATH = '/core/post/list/';
 
     /** @var HttpClient */
     private $httpClient;

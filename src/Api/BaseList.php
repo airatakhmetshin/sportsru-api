@@ -14,7 +14,7 @@ class BaseList
     /**
      * @param \DateTimeInterface $time
      */
-    public function setLastPublished(\DateTimeInterface $time)
+    public function setLastPublished(\DateTimeInterface $time): void
     {
         $this->lastPublished = $time->getTimestamp();
     }

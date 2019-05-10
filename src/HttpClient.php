@@ -5,7 +5,7 @@ namespace SportsruApi;
 class HttpClient
 {
     /** @var string|null */
-    protected $response = null;
+    protected $response;
 
     /**
      * @param string $url
@@ -31,7 +31,7 @@ class HttpClient
      */
     public function body(): string
     {
-        return $this->response ? $this->response : '';
+        return $this->response ?: '';
     }
 
     /**
