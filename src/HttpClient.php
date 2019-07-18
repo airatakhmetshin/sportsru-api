@@ -39,6 +39,12 @@ class HttpClient
      */
     public function json(): array
     {
-        return $this->response ? json_decode($this->response, true) : [];
+        $json = json_decode($this->response, true);
+
+        if (json_last_error()) {
+            throw new \RuntimeException($this->body());
+        }
+
+        return $json ?: [];
     }
 }
