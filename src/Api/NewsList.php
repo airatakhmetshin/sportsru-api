@@ -2,6 +2,7 @@
 
 namespace SportsruApi\Api;
 
+use SportsruApi\Api\Options\NewsListOptions;
 use SportsruApi\Factory\NewsFactory;
 use SportsruApi\HttpClient;
 
@@ -9,18 +10,6 @@ class NewsList extends BaseList implements ApiInterface
 {
     /** @var string */
     private const PATH = '/core/news/list/';
-
-    /** @var string */
-    public const CONTENT_ORIGIN_ALL = 'all';
-
-    /** @var string */
-    public const CONTENT_ORIGIN_MIXED = 'mixed';
-
-    /** @var string */
-    public const CONTENT_ORIGIN_EDITORIAL = 'editorial';
-
-    /** @var string */
-    public const CONTENT_ORIGIN_USER = 'user';
 
     /** @var HttpClient */
     private $httpClient;
@@ -38,17 +27,18 @@ class NewsList extends BaseList implements ApiInterface
         $this->factory    = new NewsFactory();
     }
 
-    public function getAll(
-        string $category,
-        int $count = parent::DEFAULT_COUNT,
-        string $contentOrigin = self::CONTENT_ORIGIN_ALL
-    ) {
+    public function getAll(string $category, NewsListOptions $options = null, int $count = parent::DEFAULT_COUNT)
+    {
+        if ($options === null) {
+            $options = new NewsListOptions();
+        }
+
         $args = [
             'filter' => [
-                'type'           => 'section-name',
-                'name'           => $category,
-                'news_type'      => 'all',
-                'content_origin' => $contentOrigin
+                'type'           => $options->getType(),
+                'name'           => $category ?: 'null',
+                'news_type'      => $options->getNewsType(),
+                'content_origin' => $options->getContentOrigin()
             ],
             'count'          => $count,
             'last_published' => $this->lastPublished ?? time()
