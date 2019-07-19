@@ -16,7 +16,7 @@ class Comment
     /** @var array */
     private $messageInfo;
 
-    /** @var array */
+    /** @var Comment */
     private $answerTo;
 
     /** @var int */
@@ -102,19 +102,19 @@ class Comment
     }
 
     /**
-     * @return array
+     * @return Comment
      */
-    public function getAnswerTo(): array
+    public function getAnswerTo(): ?Comment
     {
         return $this->answerTo;
     }
 
     /**
-     * @param array $answerTo
+     * @param Comment $comment
      */
-    public function setAnswerTo(array $answerTo): void
+    public function setAnswerTo(Comment $comment): void
     {
-        $this->answerTo = $answerTo;
+        $this->answerTo = $comment;
     }
 
     /**
