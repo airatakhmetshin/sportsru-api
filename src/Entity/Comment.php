@@ -2,12 +2,14 @@
 
 namespace SportsruApi\Entity;
 
+use SportsruApi\Entity\Type\UserType;
+
 class Comment
 {
     /** @var int */
     private $id;
 
-    /** @var array */
+    /** @var UserType */
     private $user;
 
     /** @var string */
@@ -54,17 +56,17 @@ class Comment
     }
 
     /**
-     * @return array
+     * @return UserType
      */
-    public function getUser(): array
+    public function getUser(): UserType
     {
         return $this->user;
     }
 
     /**
-     * @param array $user
+     * @param UserType $user
      */
-    public function setUser(array $user): void
+    public function setUser(UserType $user): void
     {
         $this->user = $user;
     }

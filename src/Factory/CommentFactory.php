@@ -3,6 +3,7 @@
 namespace SportsruApi\Factory;
 
 use SportsruApi\Entity\Comment;
+use SportsruApi\Entity\Type\UserType;
 
 class CommentFactory
 {
@@ -11,7 +12,7 @@ class CommentFactory
         $commentEntity = new Comment();
 
         $commentEntity->setId($comment['id']);
-        $commentEntity->setUser($comment['user']);
+        $commentEntity->setUser(new UserType($comment['user']));
         $commentEntity->setText($comment['text']);
 
         if (isset($comment['message_info'])) {
