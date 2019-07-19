@@ -3,6 +3,7 @@
 namespace SportsruApi;
 
 use SportsruApi\Api\ArticleList;
+use SportsruApi\Api\Comment;
 use SportsruApi\Api\NewsList;
 use SportsruApi\Api\PostList;
 
@@ -34,5 +35,10 @@ class Client
     public function post(): PostList
     {
         return new PostList($this->httpClient);
+    }
+
+    public function comment(): Comment
+    {
+        return new Comment($this->httpClient);
     }
 }
