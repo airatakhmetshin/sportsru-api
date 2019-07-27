@@ -7,6 +7,11 @@ use SportsruApi\Entity\Type\UserType;
 
 class CommentFactory
 {
+    /**
+     * @param array $comment
+     * @return Comment
+     * @throws \Exception
+     */
     public function create(array $comment): Comment
     {
         $commentEntity = new Comment();

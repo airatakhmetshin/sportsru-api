@@ -110,6 +110,7 @@ class Comment implements ApiInterface
     /**
      * @param array $commentIds
      * @return array
+     * @throws \Exception
      */
     public function getCommentByIds(array $commentIds): array
     {

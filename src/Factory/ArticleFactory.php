@@ -7,6 +7,11 @@ use SportsruApi\Entity\Type\SectionType;
 
 class ArticleFactory
 {
+    /**
+     * @param array $article
+     * @return Article
+     * @throws \Exception
+     */
     public function create(array $article): Article
     {
         $articleEntity = new Article();
@@ -15,12 +20,15 @@ class ArticleFactory
         $articleEntity->setFeature($article['feature']);
         $articleEntity->setId($article['id']);
         $articleEntity->setImageUrl($article['image']['link']);
-        if (isset($article['images']['mainbig']['link'])) $articleEntity->setBigImageUrl($article['images']['mainbig']['link']);
         $articleEntity->setMobileUrl($article['mobile_url']);
         $articleEntity->setPublishedAt((new \DateTime())->setTimestamp($article['published']['timestamp']));
         $articleEntity->setSection(new SectionType($article['section']));
         $articleEntity->setTitle($article['title']);
         $articleEntity->setUgcMaterial($article['ugc_material']);
+
+        if (isset($article['images']['mainbig']['link'])) {
+            $articleEntity->setBigImageUrl($article['images']['mainbig']['link']);
+        }
 
         return $articleEntity;
     }

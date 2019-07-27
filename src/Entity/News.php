@@ -137,8 +137,8 @@ class News
         $http  = 'http';
         $https = 'https';
 
-        if (substr($image, 0, strlen($http)) === $http ||
-            substr($image, 0, strlen($https)) === $https
+        if (strpos($image, $http) === 0 ||
+            strpos($image, $https) === 0
         ) {
             $this->image = $image;
         }

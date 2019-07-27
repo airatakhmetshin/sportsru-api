@@ -7,6 +7,11 @@ use SportsruApi\Entity\Type\SectionType;
 
 class NewsFactory
 {
+    /**
+     * @param array $news
+     * @return News
+     * @throws \Exception
+     */
     public function create(array $news): News
     {
         $newsEntity = new News();
@@ -21,8 +26,11 @@ class NewsFactory
         $newsEntity->setMobileUrl($news['mobile_url']);
         $newsEntity->setPublishedAt((new \DateTime())->setTimestamp($news['published']['timestamp']));
         $newsEntity->setSection(new SectionType($news['section']));
-        if (isset($news['source']['url'])) $newsEntity->setSourceUrl($news['source']['url']);
         $newsEntity->setTitle($news['title']);
+
+        if (isset($news['source']['url'])) {
+            $newsEntity->setSourceUrl($news['source']['url']);
+        }
 
         return $newsEntity;
     }
