@@ -2,10 +2,11 @@
 
 namespace SportsruApi\Api;
 
+use SportsruApi\Client;
 use SportsruApi\Factory\CommentFactory;
 use SportsruApi\HttpClient;
 
-class Comment
+class Comment implements ApiInterface
 {
     /** @var string */
     private const PATH_GET_IDS = '/core/api/comment/get_ids/?args=';
@@ -34,13 +35,17 @@ class Comment
     /** @var string */
     public const MESSAGE_CLASS_NEWS = 'Sports::News';
 
+    /** @var string */
+    public const MESSAGE_CLASS_POLL = 'Sports::Poll';
+
+    /** @var int */
+    private const DEFAULT_COMMENTS_COUNT = 15;
+
     /** @var HttpClient */
     private $httpClient;
 
     /** @var CommentFactory */
     private $factory;
-
-    private $baseUrl = 'https://www.sports.ru'; // @TODO: ВРЕМЕННО
 
     /**
      * Comment constructor.
@@ -54,36 +59,52 @@ class Comment
 
     /**
      * @param int $articleId
-     * @param string $messsageClass
+     * @param string $messageClass
      * @param string $sort
-     * @param int $commentCount
+     * @param int $offset
+     * @param int $length
      * @return array
      */
-    public function getCommentIds(int $articleId, string $messsageClass, string $sort = self::SORT_NEW, int $commentCount = 10): array
-    {
-        if (!in_array($messsageClass, [self::MESSAGE_CLASS_NEWS, self::MESSAGE_CLASS_BLOG], true)) {
-            throw new \RuntimeException("messageClass $messsageClass not found");
+    public function getCommentIdsByArticle(
+        int $articleId,
+        string $messageClass,
+        string $sort = self::SORT_NEW,
+        int $offset = 0,
+        int $length = self::DEFAULT_COMMENTS_COUNT
+    ): array {
+        if (!in_array($messageClass, [
+            self::MESSAGE_CLASS_NEWS,
+            self::MESSAGE_CLASS_BLOG,
+            self::MESSAGE_CLASS_POLL
+        ], true)) {
+            throw new \RuntimeException("messageClass $messageClass not found");
         }
 
-        if (!in_array($sort, [self::SORT_ACTUAL, self::SORT_TOP, self::SORT_NEW, self::SORT_FRIENDS, self::SORT_OLD], true)) {
+        if (!in_array($sort, [
+            self::SORT_ACTUAL,
+            self::SORT_TOP,
+            self::SORT_NEW,
+            self::SORT_FRIENDS,
+            self::SORT_OLD
+        ], true)) {
             throw new \RuntimeException("sort $sort not found");
         }
 
         $args = [
             'message_id'    => $articleId,
-            'message_class' => $messsageClass,
+            'message_class' => $messageClass,
             'sort'          => $sort,
         ];
 
         $response = $this->httpClient->request(
-            $this->baseUrl . self::PATH_GET_IDS . json_encode($args)
+            Client::BASE_HOST . self::PATH_GET_IDS . json_encode($args)
         )->json();
 
         if (!is_array($response)) {
-            throw new \RuntimeException('response is not array');
+            throw new \RuntimeException('response is not an array');
         }
 
-        return array_slice($response, 0, $commentCount); // @TODO: Переделать для поддержки пагинации
+        return array_slice($response, $offset, $length);
     }
 
     /**
@@ -93,7 +114,7 @@ class Comment
     public function getCommentByIds(array $commentIds): array
     {
         if (count($commentIds) < 1) {
-            throw new \RuntimeException('ids is not found');
+            throw new \RuntimeException('count of commentIds < 1');
         }
 
         $batches = [];
@@ -109,7 +130,7 @@ class Comment
             ];
 
             $response = $this->httpClient->request(
-                $this->baseUrl . self::PATH_GET_COMMENT . http_build_query($args)
+                Client::BASE_HOST . self::PATH_GET_COMMENT . http_build_query($args)
             )->json();
 
             if ($response['status'] === 'fail') {
@@ -145,21 +166,5 @@ class Comment
         }
 
         return $sorted;
-    }
-
-    /**
-     * @param int $articleId
-     * @param string $messageClass
-     * @param string $sort
-     * @param int $commentsCount
-     * @return array
-     */
-    public function getCommentByArtile(int $articleId, string  $messageClass, string $sort, int $commentsCount): array
-    {
-        if ($ids = $this->getCommentIds($articleId, $messageClass, $sort, $commentsCount)) {
-            return $this->getCommentByIds($ids);
-        }
-
-        return [];
     }
 }
