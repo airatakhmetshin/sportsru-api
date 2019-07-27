@@ -76,7 +76,7 @@ EOT;
         };
 
         $newsList = new NewsList($fakeHttpClient);
-        $news = $newsList->getAll('automoto', 1);
+        $news = $newsList->getAll('automoto');
 
         $this->assertInstanceOf(\SportsruApi\Entity\News::class, $news[0]);
     }
