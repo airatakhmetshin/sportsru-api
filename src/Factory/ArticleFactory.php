@@ -25,6 +25,7 @@ class ArticleFactory
         $articleEntity->setSection(new SectionType($article['section']));
         $articleEntity->setTitle($article['title']);
         $articleEntity->setUgcMaterial($article['ugc_material']);
+        $articleEntity->setMain($article['main']);
 
         if (isset($article['images']['mainbig']['link'])) {
             $articleEntity->setBigImageUrl($article['images']['mainbig']['link']);

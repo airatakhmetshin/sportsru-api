@@ -39,6 +39,9 @@ class Article
     /** @var bool */
     private $ugcMaterial;
 
+    /** @var bool */
+    private $main;
+
     /**
      * @return int
      */
@@ -215,5 +218,21 @@ class Article
     public function setUgcMaterial(bool $ugcMaterial): void
     {
         $this->ugcMaterial = $ugcMaterial;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMain(): bool
+    {
+        return $this->main;
+    }
+
+    /**
+     * @param bool $main
+     */
+    public function setMain(bool $main): void
+    {
+        $this->main = $main;
     }
 }

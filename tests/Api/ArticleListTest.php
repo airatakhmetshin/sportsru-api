@@ -54,6 +54,7 @@ final class ArticleListTest extends TestCase
                             }
                          },
                          "ugc_material" : false,
+                         "main": false,
                          "special_without_feed" : false,
                          "special" : false,
                          "advert_material" : false,
