@@ -11,6 +11,12 @@ class NewsListOptions
     public const TYPE_SECTION_NAME = 'section-name';
 
     /** @var string */
+    public const TYPE_SPORT = 'sport';
+
+    /** @var string */
+    public const TYPE_TAG = 'tag';
+
+    /** @var string */
     public const NEWS_TYPE_ALL = 'all';
 
     /** @var string */

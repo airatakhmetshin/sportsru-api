@@ -27,7 +27,7 @@ class NewsList extends BaseList implements ApiInterface
         $this->factory    = new NewsFactory();
     }
 
-    public function getAll(string $category, NewsListOptions $options = null, int $count = parent::DEFAULT_COUNT)
+    public function getAll(string $category = null, NewsListOptions $options = null, int $count = parent::DEFAULT_COUNT)
     {
         if ($options === null) {
             $options = new NewsListOptions();
