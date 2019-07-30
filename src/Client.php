@@ -9,7 +9,21 @@ use SportsruApi\Api\PostList;
 
 class Client
 {
+    /** @var string */
     public const BASE_HOST = 'https://www.sports.ru';
+
+    /** @var array */
+    public const CATEGORIES = [
+        'football',
+        'hockey',
+        'basketball',
+        'automoto',
+        'tennis',
+        'boxing',
+        'figure-skating',
+        'biathlon',
+        'aquatics'
+    ];
 
     /** @var HttpClient */
     private $httpClient;

@@ -28,6 +28,10 @@ class ArticleList extends BaseList implements ApiInterface
 
     public function getAll(string $category, int $count = parent::DEFAULT_COUNT)
     {
+        if (!$this->isCategory($category)) {
+            throw new \RuntimeException("category not found: $category");
+        }
+
         $args = [
             'filter' => [
                 'type'     => 'section-name',

@@ -33,6 +33,10 @@ class PostList extends BaseList implements ApiInterface
         bool $best = false,
         bool $showAvatar = false
     ) {
+        if (!$this->isCategory($category)) {
+            throw new \RuntimeException("category not found: $category");
+        }
+
         $args = [
             'filter' => [
                 'type'         => $type === 'homepage' ? $type : 'section-name',

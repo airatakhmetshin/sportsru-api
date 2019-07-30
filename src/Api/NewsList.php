@@ -29,6 +29,10 @@ class NewsList extends BaseList implements ApiInterface
 
     public function getAll(string $category = null, NewsListOptions $options = null, int $count = parent::DEFAULT_COUNT)
     {
+        if ($category && !$this->isCategory($category)) {
+            throw new \RuntimeException("category not found: $category");
+        }
+
         if ($options === null) {
             $options = new NewsListOptions();
         }
