@@ -10,6 +10,12 @@ class ArticleList extends BaseList implements ApiInterface
     /** @var string */
     private const PATH = '/core/article/list/';
 
+    /** @var string */
+    public const TYPE_HOMEPAGE = 'homepage';
+
+    /** @var string */
+    public const TYPE_SECTION_NAME = 'section-name';
+
     /** @var HttpClient */
     private $httpClient;
 
@@ -26,16 +32,25 @@ class ArticleList extends BaseList implements ApiInterface
         $this->factory    = new ArticleFactory();
     }
 
-    public function getAll(string $category, int $count = parent::DEFAULT_COUNT)
-    {
-        if (!$this->isCategory($category)) {
+    public function getAll(
+        string $category = null,
+        string $type = null,
+        int $count = parent::DEFAULT_COUNT
+    ) {
+        if ($category && !$this->isCategory($category)) {
             throw new \RuntimeException("category not found: $category");
+        }
+
+        $type = $type ?: self::TYPE_SECTION_NAME;
+
+        if (!in_array($type, [self::TYPE_HOMEPAGE, self::TYPE_SECTION_NAME], true)) {
+            throw new \RuntimeException("type not found: $type");
         }
 
         $args = [
             'filter' => [
-                'type'     => 'section-name',
-                'name'     => $category,
+                'type'     => $type,
+                'name'     => $category ?: '',
                 'sub-name' => ''
             ],
             'count'          => $count,

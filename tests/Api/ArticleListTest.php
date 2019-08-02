@@ -98,7 +98,7 @@ EOT;
         };
 
         $articleList = new ArticleList($fakeHttpClient);
-        $articles = $articleList->getAll('automoto', 1);
+        $articles = $articleList->getAll('automoto', null, 1);
 
         $this->assertInstanceOf(\SportsruApi\Entity\Article::class, $articles[0]);
     }
