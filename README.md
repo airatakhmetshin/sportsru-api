@@ -1,6 +1,6 @@
 # SportsruApi
 
-Библиотека для работы с неоффициальным API [Sports.ru](https://www.sports.ru). Разработано **ИСКЛЮЧИТЕЛЬНО** в образовательных целях.
+Библиотека для работы с неофициальным API [Sports.ru](https://www.sports.ru). Разработано **ИСКЛЮЧИТЕЛЬНО** в образовательных целях.
 
 > [Пример](https://github.com/airatakhmetshin/sports-web) использования библиотеки в виде веб-приложения (в процессе доработки).
 
@@ -83,7 +83,7 @@ $posts = $postApi->getAll($category);
 
 // С дополнительными аргументами
 $count = 10;
-$type = 'homepage' // или 'section-name'
+$type = 'homepage'; // или 'section-name'
 $best = true;
 $showAvatar = true;
 
